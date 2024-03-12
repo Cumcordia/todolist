@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             label1 = new Label();
             addButton = new Button();
             deleteButton = new Button();
@@ -51,7 +52,7 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(13, 119);
+            addButton.Location = new Point(13, 175);
             addButton.Name = "addButton";
             addButton.Size = new Size(87, 42);
             addButton.TabIndex = 1;
@@ -61,7 +62,7 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(106, 119);
+            deleteButton.Location = new Point(105, 175);
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(95, 42);
             deleteButton.TabIndex = 2;
@@ -71,7 +72,7 @@
             // 
             // entryBox
             // 
-            entryBox.Location = new Point(12, 45);
+            entryBox.Location = new Point(13, 82);
             entryBox.Name = "entryBox";
             entryBox.Size = new Size(523, 23);
             entryBox.TabIndex = 3;
@@ -81,15 +82,15 @@
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 167);
+            dataGridView1.Location = new Point(12, 223);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(523, 401);
+            dataGridView1.Size = new Size(523, 416);
             dataGridView1.TabIndex = 4;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // timeBox
             // 
-            timeBox.Location = new Point(12, 90);
+            timeBox.Location = new Point(12, 146);
             timeBox.Name = "timeBox";
             timeBox.Size = new Size(523, 23);
             timeBox.TabIndex = 5;
@@ -98,7 +99,7 @@
             // label2
             // 
             label2.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label2.Location = new Point(12, 71);
+            label2.Location = new Point(12, 118);
             label2.Name = "label2";
             label2.Size = new Size(53, 16);
             label2.TabIndex = 6;
@@ -109,7 +110,7 @@
             // label3
             // 
             label3.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label3.Location = new Point(12, 26);
+            label3.Location = new Point(12, 54);
             label3.Name = "label3";
             label3.Size = new Size(62, 16);
             label3.TabIndex = 7;
@@ -120,7 +121,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(547, 580);
+            ClientSize = new Size(548, 651);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(timeBox);
@@ -129,8 +130,9 @@
             Controls.Add(deleteButton);
             Controls.Add(addButton);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
-            Text = "Form1";
+            Text = "To-do list";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
