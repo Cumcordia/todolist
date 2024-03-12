@@ -23,6 +23,7 @@ namespace WinFormsApp2
         private void Form1_Load(object sender, EventArgs e)
         {
             todoList.Columns.Add("Задача");
+            todoList.Columns.Add("Время");
             dataGridView1.DataSource = todoList;
         }
 
@@ -35,13 +36,19 @@ namespace WinFormsApp2
         {
             if (isEditing)
             {
-                todoList.Rows[dataGridView1.CurrentCell.RowIndex]["Title"] = entryBox.Text;
+                todoList.Rows[dataGridView1.CurrentCell.RowIndex]["Задача"] = entryBox.Text;
+                todoList.Rows[dataGridView1.CurrentCell.RowIndex]["Время"] = timeBox.Text;
             }
             else
             {
-                todoList.Rows.Add(entryBox.Text);
+                DataRow newRow = todoList.NewRow();
+                newRow["Задача"] = entryBox.Text;
+                newRow["Время"] = timeBox.Text;
+                todoList.Rows.Add(newRow);
             }
+
             entryBox.Text = "";
+            timeBox.Text = "";
             isEditing = false;
         }
 
@@ -58,6 +65,16 @@ namespace WinFormsApp2
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timeBox_TextChanged(object sender, EventArgs e)
         {
 
         }
