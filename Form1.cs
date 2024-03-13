@@ -71,34 +71,16 @@ namespace WinFormsApp2
 
         private void timeBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ':' && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
         }
 
-        private void SaveToJsonFile()
-        {
-            List<Json> jsonDataList = new List<Json>();
-
-            foreach (DataRow row in todoList.Rows)
-            {
-                jsonDataList.Add(new Json(row["Задача"].ToString(), int.Parse(row["Время"].ToString())));
-            }
-
-            string json = JsonSerializer.Serialize(jsonDataList);
-
-            File.WriteAllText("todo_list.json", json);
-
-            MessageBox.Show("Данные успешно сохранены в файле todo_list.json");
-        }
-
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
-
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -112,7 +94,7 @@ namespace WinFormsApp2
 
         private void save_Click(object sender, EventArgs e)
         {
-            SaveToJsonFile();
+
         }
 
         private void dateTime_ValueChanged(object sender, EventArgs e)

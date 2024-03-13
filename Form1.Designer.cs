@@ -38,7 +38,6 @@
             label2 = new Label();
             label3 = new Label();
             save = new Button();
-            button1 = new Button();
             dateTime = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -93,7 +92,7 @@
             // 
             // timeBox
             // 
-            timeBox.Location = new Point(12, 146);
+            timeBox.Location = new Point(13, 146);
             timeBox.Name = "timeBox";
             timeBox.Size = new Size(243, 23);
             timeBox.TabIndex = 5;
@@ -126,18 +125,9 @@
             save.Name = "save";
             save.Size = new Size(95, 42);
             save.TabIndex = 8;
-            save.Text = "Экспорт";
+            save.Text = "Сохранить";
             save.UseVisualStyleBackColor = true;
             save.Click += save_Click;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(307, 175);
-            button1.Name = "button1";
-            button1.Size = new Size(95, 42);
-            button1.TabIndex = 9;
-            button1.Text = "Импорт";
-            button1.UseVisualStyleBackColor = true;
             // 
             // dateTime
             // 
@@ -153,7 +143,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(548, 651);
             Controls.Add(dateTime);
-            Controls.Add(button1);
             Controls.Add(save);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -183,7 +172,6 @@
         private Label label2;
         private Label label3;
         private Button save;
-        private Button button1;
         private DateTimePicker dateTime;
     }
 }

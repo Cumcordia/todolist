@@ -1,5 +1,8 @@
 using System.Net.Cache;
 using System.Text.Json;
+using System.Windows.Forms;
+using WinFormsApp2;
+using Newtonsoft.Json;
 
 namespace WinFormsApp2
 {
@@ -8,23 +11,8 @@ namespace WinFormsApp2
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
         }
     }
-
-    public class Json
-    {
-        public string Task { get; set; }
-        public int Time { get; set; }
-
-        public Json(string task, int time)
-        {
-            Task = task;
-            Time = time;
-        }
-    }
-
 }
