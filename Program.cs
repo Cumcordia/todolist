@@ -1,10 +1,10 @@
+using System.Net.Cache;
+using System.Text.Json;
+
 namespace WinFormsApp2
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
@@ -14,4 +14,17 @@ namespace WinFormsApp2
             Application.Run(new Form1());
         }
     }
+
+    public class Json
+    {
+        public string Task { get; set; }
+        public int Time { get; set; }
+
+        public Json(string task, int time)
+        {
+            Task = task;
+            Time = time;
+        }
+    }
+
 }

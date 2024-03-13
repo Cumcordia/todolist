@@ -37,6 +37,9 @@
             timeBox = new TextBox();
             label2 = new Label();
             label3 = new Label();
+            save = new Button();
+            button1 = new Button();
+            dateTime = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -92,7 +95,7 @@
             // 
             timeBox.Location = new Point(12, 146);
             timeBox.Name = "timeBox";
-            timeBox.Size = new Size(523, 23);
+            timeBox.Size = new Size(243, 23);
             timeBox.TabIndex = 5;
             timeBox.TextChanged += timeBox_TextChanged;
             // 
@@ -117,11 +120,41 @@
             label3.Text = "Задача";
             label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // save
+            // 
+            save.Location = new Point(206, 175);
+            save.Name = "save";
+            save.Size = new Size(95, 42);
+            save.TabIndex = 8;
+            save.Text = "Экспорт";
+            save.UseVisualStyleBackColor = true;
+            save.Click += save_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(307, 175);
+            button1.Name = "button1";
+            button1.Size = new Size(95, 42);
+            button1.TabIndex = 9;
+            button1.Text = "Импорт";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // dateTime
+            // 
+            dateTime.Location = new Point(273, 146);
+            dateTime.Name = "dateTime";
+            dateTime.Size = new Size(263, 23);
+            dateTime.TabIndex = 10;
+            dateTime.ValueChanged += dateTime_ValueChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(548, 651);
+            Controls.Add(dateTime);
+            Controls.Add(button1);
+            Controls.Add(save);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(timeBox);
@@ -149,5 +182,8 @@
         private TextBox timeBox;
         private Label label2;
         private Label label3;
+        private Button save;
+        private Button button1;
+        private DateTimePicker dateTime;
     }
 }

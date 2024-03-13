@@ -8,24 +8,19 @@
     "net8.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\maksi\\.nuget\\packages\\": {},
-    "F:\\prog\\vsshared\\NuGetPackages": {}
+    "C:\\Users\\stem\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\admin\\desk\\wwww\\WinFormsApp2.csproj",
+      "projectUniqueName": "C:\\Users\\stem\\Desktop\\fffv\\WinFormsApp2.csproj",
       "projectName": "WinFormsApp2",
-      "projectPath": "F:\\admin\\desk\\wwww\\WinFormsApp2.csproj",
-      "packagesPath": "C:\\Users\\maksi\\.nuget\\packages\\",
-      "outputPath": "F:\\admin\\desk\\wwww\\obj\\",
+      "projectPath": "C:\\Users\\stem\\Desktop\\fffv\\WinFormsApp2.csproj",
+      "packagesPath": "C:\\Users\\stem\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\stem\\Desktop\\fffv\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "F:\\prog\\vsshared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\maksi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\stem\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -33,7 +28,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
