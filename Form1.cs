@@ -27,12 +27,16 @@ namespace WinFormsApp2
             todoList.Columns.Add("Время");
             todoList.Columns.Add("Дата");
             dataGridView1.DataSource = todoList;
+
+            dataGridView1.Sort(dataGridView1.Columns["Дата"], System.ComponentModel.ListSortDirection.Descending);
         }
 
         private void LoadDataFromDatabase()
         {
             try
             {
+                todoList.Clear();
+
                 using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
                 {
                     connection.Open();
@@ -52,6 +56,7 @@ namespace WinFormsApp2
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка загрузки данных: {ex.Message}");
@@ -80,9 +85,10 @@ namespace WinFormsApp2
                         command.ExecuteNonQuery();
                     }
 
-                    todoList.Rows.Add(task, time, date);
+                    LoadDataFromDatabase();
                 }
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка добавления данных: {ex.Message}");
@@ -116,18 +122,23 @@ namespace WinFormsApp2
                         }
 
                         dataGridView1.Rows.Remove(selectedRow);
-
-                        MessageBox.Show("Данные успешно удалены!");
                     }
                 }
+
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Ошибка удаления данных: {ex.Message}");
                 }
             }
+
+            else
+            {
+                MessageBox.Show("Для удаления данных выделите всю строку с помощью крайней левой части таблицы.");
+            }
         }
 
 
+        // не работает
         private void timeBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != ':' && !char.IsControl(e.KeyChar))
