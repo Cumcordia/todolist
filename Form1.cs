@@ -1,73 +1,132 @@
-using System.Data;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 using System.Windows.Forms;
-using System.Text.Json;
+using Npgsql;
 
 namespace WinFormsApp2
 {
     public partial class Form1 : Form
     {
+        private DataTable todoList = new DataTable();
+        private string connectionString = "Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=123";
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        DataTable todoList = new DataTable();
-        bool isEditing = false;
-
         private void Form1_Load(object sender, EventArgs e)
+        {
+            InitializeDataTable();
+            LoadDataFromDatabase();
+        }
+
+        private void InitializeDataTable()
         {
             todoList.Columns.Add("Задача");
             todoList.Columns.Add("Время");
             todoList.Columns.Add("Дата");
             dataGridView1.DataSource = todoList;
-            timeBox.KeyPress += timeBox_KeyPress;
         }
 
-        private void entryBox_TextChanged(object sender, EventArgs e)
+        private void LoadDataFromDatabase()
         {
+            try
+            {
+                using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+                {
+                    connection.Open();
 
+                    string query = "SELECT Task, Time, Date FROM todolist";
+
+                    using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
+                    using (NpgsqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string task = reader.GetString(0);
+                            string time = reader.GetString(1);
+                            string date = reader.GetString(2);
+                            todoList.Rows.Add(task, time, date);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка загрузки данных: {ex.Message}");
+            }
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            if (isEditing)
-            {
-                todoList.Rows[dataGridView1.CurrentCell.RowIndex]["Задача"] = entryBox.Text;
-                todoList.Rows[dataGridView1.CurrentCell.RowIndex]["Время"] = timeBox.Text;
-                todoList.Rows[dataGridView1.CurrentCell.RowIndex]["Дата"] = timeBox.Text;
-            }
-            else
-            {
-                DataRow newRow = todoList.NewRow();
-                newRow["Задача"] = entryBox.Text;
-                newRow["Время"] = timeBox.Text;
-                newRow["Дата"] = dateTime.Text;
-                todoList.Rows.Add(newRow);
-            }
+            string task = entryBox.Text;
+            string time = timeBox.Text;
+            string date = dateTime.Text;
 
-            entryBox.Text = "";
-            timeBox.Text = "";
-            isEditing = false;
+            try
+            {
+                using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = "INSERT INTO todolist (Task, Time, Date) VALUES (@task, @time, @date)";
+
+                    using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@task", task);
+                        command.Parameters.AddWithValue("@time", time);
+                        command.Parameters.AddWithValue("@date", date);
+                        command.ExecuteNonQuery();
+                    }
+
+                    todoList.Rows.Add(task, time, date);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка добавления данных: {ex.Message}");
+            }
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            try
+            if (dataGridView1.SelectedRows.Count > 0)
             {
-                todoList.Rows[dataGridView1.CurrentCell.RowIndex].Delete();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex);
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+
+                string task = selectedRow.Cells["Задача"].Value.ToString();
+                string time = selectedRow.Cells["Время"].Value.ToString();
+                string date = selectedRow.Cells["Дата"].Value.ToString();
+
+                try
+                {
+                    using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+                    {
+                        connection.Open();
+
+                        string query = "DELETE FROM todolist WHERE Task = @task AND Time = @time AND Date = @date";
+
+                        using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@task", task);
+                            command.Parameters.AddWithValue("@time", time);
+                            command.Parameters.AddWithValue("@date", date);
+                            command.ExecuteNonQuery();
+                        }
+
+                        dataGridView1.Rows.Remove(selectedRow);
+
+                        MessageBox.Show("Данные успешно удалены!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка удаления данных: {ex.Message}");
+                }
             }
         }
+
 
         private void timeBox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -76,31 +135,5 @@ namespace WinFormsApp2
                 e.Handled = true;
             }
         }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void timeBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void save_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTime_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
     }
-
 }

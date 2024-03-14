@@ -37,7 +37,6 @@
             timeBox = new TextBox();
             label2 = new Label();
             label3 = new Label();
-            save = new Button();
             dateTime = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -78,7 +77,6 @@
             entryBox.Name = "entryBox";
             entryBox.Size = new Size(523, 23);
             entryBox.TabIndex = 3;
-            entryBox.TextChanged += entryBox_TextChanged;
             // 
             // dataGridView1
             // 
@@ -88,7 +86,6 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(523, 416);
             dataGridView1.TabIndex = 4;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // timeBox
             // 
@@ -96,7 +93,6 @@
             timeBox.Name = "timeBox";
             timeBox.Size = new Size(243, 23);
             timeBox.TabIndex = 5;
-            timeBox.TextChanged += timeBox_TextChanged;
             // 
             // label2
             // 
@@ -107,7 +103,6 @@
             label2.TabIndex = 6;
             label2.Text = "Время";
             label2.TextAlign = ContentAlignment.MiddleCenter;
-            label2.Click += label2_Click;
             // 
             // label3
             // 
@@ -119,23 +114,12 @@
             label3.Text = "Задача";
             label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // save
-            // 
-            save.Location = new Point(206, 175);
-            save.Name = "save";
-            save.Size = new Size(95, 42);
-            save.TabIndex = 8;
-            save.Text = "Сохранить";
-            save.UseVisualStyleBackColor = true;
-            save.Click += save_Click;
-            // 
             // dateTime
             // 
             dateTime.Location = new Point(273, 146);
             dateTime.Name = "dateTime";
             dateTime.Size = new Size(263, 23);
             dateTime.TabIndex = 10;
-            dateTime.ValueChanged += dateTime_ValueChanged;
             // 
             // Form1
             // 
@@ -143,7 +127,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(548, 651);
             Controls.Add(dateTime);
-            Controls.Add(save);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(timeBox);
@@ -171,7 +154,6 @@
         private TextBox timeBox;
         private Label label2;
         private Label label3;
-        private Button save;
         private DateTimePicker dateTime;
     }
 }
